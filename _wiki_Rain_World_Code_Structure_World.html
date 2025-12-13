@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Rain World Code Structure/World - Rain World Modding</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )rainworldmoddingwikimwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"mdy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"272198f96b610cb577969641","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Rain_World_Code_Structure/World","wgTitle":"Rain World Code Structure/World","wgCurRevisionId":528,"wgRevisionId":528,"wgArticleId":204,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Unhelpful todos","To do","Verification Needed"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Rain_World_Code_Structure/World","wgRelevantArticleId":204,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgNoticeProject":"optout","wgCiteReferencePreviewsActive":true,"wgMFDisplayWikibaseDescriptions":{"search":false,"nearby":false,"watchlist":false,"tagline":false},"wgMediaViewerOnClick":true,"wgMediaViewerEnabledByDefault":true,"wgVisualEditor":{"pageLanguageCode":"en","pageLanguageDir":"ltr","pageVariantFallbacks":"en"},"wgCheckUserClientHintsHeadersJsApi":["brands","architecture","bitness","fullVersionList","mobile","model","platform","platformVersion"],"wgIsMobile":false,"JSBreadCrumbs":{"SiteMaxCrumbs":5,"GlobalMaxCrumbs":20,"ShowAction":false,"ShowSite":false,"Domain":false,"HorizontalSeparator":"»","Horizontal":true,"CSSSelector":[],"LeadingDescription":"Last 5 Pages Viewed:","MaxLength":40,"PageName":"Rain World Code Structure/World","Action":""},"wgEditSubmitButtonLabelPublish":false};
+RLSTATE={"ext.globalCssJs.user.styles":"ready","site.styles":"ready","user.styles":"ready","ext.globalCssJs.user":"ready","user":"ready","user.options":"loading","skins.vector.styles.legacy":"ready","jquery.tablesorter.styles":"ready","ext.socialprofile.responsive":"ready","ext.CookieWarning.styles":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.MobileDetect.nomobile":"ready","ext.embedVideo.styles":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","jquery.tablesorter","skins.vector.legacy.js","ext.centralNotice.geoIP","ext.centralNotice.startUp","ext.checkUser.clientHints","ext.CookieWarning","ext.echo.centralauth","ext.eventLogging","ext.urlShortener.toolbar","ext.JSBreadCrumbs","mmv.bootstrap","ext.embedVideo.overlay","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.centralauth.centralautologin","ext.purge"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=ext.CookieWarning.styles%7Cext.MobileDetect.nomobile%7Cext.embedVideo.styles%7Cext.socialprofile.responsive%7Cext.visualEditor.desktopArticleTarget.noscript%7Cjquery.tablesorter.styles%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/w/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.44.2">
+<meta name="referrer" content="origin">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="World class represents state of a single region being played. It contains all rooms, entities and region-wide processes and the like, and passes lifecycle (Update...">
+<meta name="twitter:site" content="">
+<meta name="twitter:card" content="summary">
+<meta name="viewport" content="width=1120">
+<meta property="og:title" content="Rain World Code Structure/World - Rain World Modding">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="//static.wikitide.net">
+<link rel="icon" href="https://static.miraheze.org/rainworldmoddingwiki/3/3d/Hardhatcat.png">
+<link rel="search" type="application/opensearchdescription+xml" href="/w/rest.php/v1/search" title="Rain World Modding (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://rainworldmodding.miraheze.org/w/api.php?action=rsd">
+<link rel="canonical" href="https://rainworldmodding.miraheze.org/wiki/Rain_World_Code_Structure/World">
+<link rel="alternate" type="application/atom+xml" title="Rain World Modding Atom feed" href="/wiki/Special:RecentChanges?feed=atom">
+<link rel="dns-prefetch" href="https://meta.miraheze.org" />
+<meta property="og:title" content="Rain World Code Structure/World">
+<meta property="og:site_name" content="Rain World Modding">
+<meta property="og:url" content="https://rainworldmodding.miraheze.org/wiki/Rain_World_Code_Structure/World">
+<meta property="og:description" content="World class represents state of a single region being played. It contains all rooms, entities and region-wide processes and the like, and passes lifecycle (Update...">
+<meta property="og:image" content="https://static.miraheze.org/rainworldmoddingwiki/3/3d/Hardhatcat.png">
+<meta property="article:modified_time" content="2023-07-19T18:19:11Z">
+<meta property="article:published_time" content="2023-07-19T18:19:11Z">
+<script type="application/ld+json">{"@context":"http:\/\/schema.org","@type":"Article","name":"Rain World Code Structure\/World - Rain World Modding","headline":"Rain World Code Structure\/World - Rain World Modding","mainEntityOfPage":"Rain World Code Structure\/World","identifier":"https:\/\/rainworldmodding.miraheze.org\/wiki\/Rain_World_Code_Structure\/World","url":"https:\/\/rainworldmodding.miraheze.org\/wiki\/Rain_World_Code_Structure\/World","description":"World class represents state of a single region being played. It contains all rooms, entities and region-wide processes and the like, and passes lifecycle (Update...","dateModified":"2023-07-19T18:19:11Z","datePublished":"2023-07-19T18:19:11Z","image":{"@type":"ImageObject","url":"https:\/\/static.miraheze.org\/rainworldmoddingwiki\/3\/3d\/Hardhatcat.png"},"author":{"@type":"Organization","name":"Rain World Modding","url":"https:\/\/rainworldmodding.miraheze.org","logo":{"@type":"ImageObject","url":"https:\/\/static.miraheze.org\/rainworldmoddingwiki\/3\/3d\/Hardhatcat.png","caption":"Rain World Modding"}},"publisher":{"@type":"Organization","name":"Rain World Modding","url":"https:\/\/rainworldmodding.miraheze.org","logo":{"@type":"ImageObject","url":"https:\/\/static.miraheze.org\/rainworldmoddingwiki\/3\/3d\/Hardhatcat.png","caption":"Rain World Modding"}},"potentialAction":{"@type":"SearchAction","target":"https:\/\/rainworldmodding.miraheze.org\/wiki\/Special:Search?search={search_term}","query-input":"required name=search_term"}}</script>
+<link rel="dns-prefetch" href="login.miraheze.org">
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Rain_World_Code_Structure_World rootpage-Rain_World_Code_Structure skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"><!-- CentralNotice --></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Rain World Code Structure/World</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From Rain World Modding</div>
+		<div id="contentSub"><div id="mw-content-subtitle"><div class="subpages">&lt; <bdi dir="ltr"><a href="/wiki/Rain_World_Code_Structure" title="Rain World Code Structure">Rain World Code Structure</a></bdi></div></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><style data-mw-deduplicate="TemplateStyles:r1249">.mw-parser-output .mbox-outer{margin:1.5em 0;display:block}.mw-parser-output .mbox{border:2px solid;border-radius:1em;padding:0 0.5em;max-width:100%;display:inline-block;box-sizing:border-box}.mw-parser-output .mbox-contents{margin:0 auto;max-width:1000px}.mw-parser-output .mbox-grid{display:grid;align-items:center;justify-content:center;grid-auto-columns:minmax(0,1fr)auto minmax(0,1fr);max-width:1000px;margin:0 auto}.mw-parser-output .mbox-row1{display:contents;align-items:center;justify-content:center}.mw-parser-output .mbox-imageleft,.mw-parser-output .mbox-imageright,.mw-parser-output .mbox-noimageleft,.mw-parser-output .mbox-noimageright{padding:0.5em 0;box-sizing:border-box;grid-row:1/span 2;align-self:center}.mw-parser-output .mbox-imageleft img,.mw-parser-output .mbox-imageright img{max-width:initial;vertical-align:middle}.mw-parser-output .mbox-imageleft,.mw-parser-output .mbox-noimageleft{padding-right:0.5em;justify-self:right;text-align:right;grid-column:1}.mw-parser-output .mbox-imageright,.mw-parser-output .mbox-noimageright{padding-left:0.5em;justify-self:left;text-align:left;grid-column:3}.mw-parser-output .mbox-text,.mw-parser-output .mbox-big{margin:0;width:max-content;max-width:600px}.mw-parser-output .mbox-text{padding:0.5em 0;grid-row:2;align-self:start}.mw-parser-output .mbox-lonelytext{grid-row:1/span 2;align-self:center}.mw-parser-output .mbox-text>:first-child{margin-top:0}.mw-parser-output .mbox-text>:last-child{margin-bottom:0}.mw-parser-output .mbox-big{font-size:125%;font-weight:bold;padding:0.5em 0 0;grid-row:1;align-self:end}.mw-parser-output .mbox-below{padding:0 0 0.5em}@media(max-width:1000px){.mw-parser-output .mbox-big{font-size:115%}}.mw-parser-output .mbox-below>:first-child{margin-top:0}.mw-parser-output .mbox-below>:last-child{margin-bottom:0}.mw-parser-output .mbox-below .mw-references-wrap{border-top:2px solid #808080}.mw-parser-output .mbox{border-color:#808080;background-color:rgba(56,56,56,0.2)}.mw-parser-output .mbox-stub{border-color:#96b996;background-color:rgba(35,60,35,0.2)}.mw-parser-output .mbox-disambig{border-color:#c6a6cb;background-color:rgba(70,45,75,0.2)}.mw-parser-output .mbox-delete{border-color:#d7a39d;background-color:rgba(80,45,40,0.2)}.mw-parser-output .mbox-delete.mbox-speedy{border-color:#f36c67;background-color:rgba(95,35,30,0.2)}.mw-parser-output .mbox-copyright{border-color:#c49f34;background-color:rgba(195,155,50,0.2)}.mw-parser-output .mbox-knownissues{}.mw-parser-output .mbox.mbox-banner{width:100%;max-width:100%;clear:both;border-radius:0}@media(max-width:1000px){.mw-parser-output .mbox.mbox-banner{border-right:0;border-left:0;padding-right:0;padding-left:0}}.mw-parser-output .mbox-center{text-align:center}.mw-parser-output .mbox-center .mbox-big,.mw-parser-output .mbox-center .mbox-text{justify-self:center}.mw-parser-output .mbox-spoiler .mbox-noimageleft,.mw-parser-output .mbox-spoiler .mbox-noimageright{display:block}.mw-parser-output .mbox-downpour{border-color:#05d2d3;background-color:rgba(5,210,211,0.2)}.mw-parser-output .mbox-watcher{border-color:#0c1125;background-color:rgba(23,35,79,0.2)}.mw-parser-output .mbox-spoiler{border-color:#dd2299;background-color:rgba(100,20,90,0.2)}.mw-parser-output .mbox .smallimg{display:none}@media(max-width:1280px){.mw-parser-output .mbox-contents,.mw-parser-output .mbox-text,.mw-parser-output .mbox-below,.mw-parser-output .mbox-big{width:revert;max-width:100%}.mw-parser-output .mbox-grid{display:block}.mw-parser-output .mbox-row1{display:flex;flex-wrap:wrap}.mw-parser-output .mbox-big{align-self:center;flex:4 max-content}.mw-parser-output .mbox-imageleft,.mw-parser-output .mbox-imageright{flex:1}}@media(max-width:1000px){.mw-parser-output .mbox-row1{display:block;padding:0.5em 0 0}.mw-parser-output .mbox-imageleft,.mw-parser-output .mbox-big,.mw-parser-output .mbox-imageright{display:inline}.mw-parser-output .mbox-imageleft{float:left}.mw-parser-output .mbox-imageright{float:right}.mw-parser-output .mbox-noimageleft,.mw-parser-output .mbox-noimageright{display:none}.mw-parser-output .mbox .bigimg{display:none!important}.mw-parser-output .mbox .smallimg{display:revert!important}}</style><div class="mbox-outer"><div class="mbox mbox-todo"><div class="mbox-contents"><div class="mbox-grid"><div class="mbox-row1"><div class="mbox-imageleft"><span class="pixelated" typeof="mw:File"><span><img src="//static.wikitide.net/rainworldmoddingwiki/thumb/9/98/Scavputer.gif/72px-Scavputer.gif" decoding="async" width="72" height="72" class="mw-file-element" srcset="//static.wikitide.net/rainworldmoddingwiki/9/98/Scavputer.gif 1.5x" data-file-width="96" data-file-height="96" /></span></span></div><div class="mbox-big"><strong><b>To do:</b></strong></div><div class="mbox-noimageright"></div></div><div class="mbox-text">
+<p>(No text provided.)</p>
+</div></div></div></div></div>
+<p><b>World</b> class represents state of a single region being played. It contains all <a href="/wiki/Rain_World_Code_Structure/Rooms" title="Rain World Code Structure/Rooms">rooms</a>, <a href="/wiki/Rain_World_Code_Structure/AbstractWorldEntity" title="Rain World Code Structure/AbstractWorldEntity">entities</a> and region-wide processes and the like, and passes lifecycle (Update, etc) calls down to them. A world can be single-room when the game is in arena mode.
+</p><p>World class <i>does not fully populate itself from the savedata</i>. World data is partially processed by <a href="/wiki/Rain_World_Code_Structure/WorldLoader?action=edit&amp;redlink=1" class="new" title="Rain World Code Structure/WorldLoader (page does not exist)">WorldLoader</a> (<i>after</i> the World object is constructed, so there are points in World's lifecycle where it's blank and some members are uninitialized).
+</p>
+<div class="mw-heading mw-heading2"><h2 id="Notable_members">Notable members</h2></div>
+<table class="wikitable sortable">
+<caption>
+</caption>
+<tbody><tr>
+<th>Name</th>
+<th>Kind</th>
+<th>Description
+</th></tr>
+<tr>
+<td>abstractRooms</td>
+<td>Field</td>
+<td>An array of all rooms within this region.
+</td></tr>
+<tr>
+<td>activeRooms</td>
+<td>Field</td>
+<td>A list of all rooms in this region that are currently realized.
+</td></tr>
+<tr>
+<td>brokenShelters</td>
+<td>Field</td>
+<td>An array of booleans, each one corresponding to a shelter with the same index, telling whether that shelter is broken (false is working, true is broken)
+</td></tr>
+<tr>
+<td>DisabledMapRooms</td>
+<td>Field</td>
+<td>A list of rooms that are not shown on the maps (not the same thing as rooms whose entrances are hidden with a placed object)
+</td></tr>
+<tr>
+<td>gates</td>
+<td>Field</td>
+<td>Room indices of all gates.
+</td></tr>
+<tr>
+<td>lineages</td>
+<td>Field</td>
+<td>An array containing all lineage spawners of the world.
+</td></tr>
+<tr>
+<td>loadingRooms</td>
+<td>Field</td>
+<td>A list of RoomPreparer objects representing rooms that are currently in the process of being realized.
+</td></tr>
+<tr>
+<td>name</td>
+<td>Field</td>
+<td>Current region's acronym (SU for Outskirts, HI for Industrial, etc)
+</td></tr>
+<tr>
+<td>offScreenDen</td>
+<td>Field</td>
+<td>A special abstract room that acts as a hub for specific creatures, such as Scavengers, Vultures, and Miros birds (generally, any creature that is not quantified and also is not bound to a specific room by spawns)
+</td></tr>
+<tr>
+<td>rainCycle</td>
+<td>Field</td>
+<td>Object holding information about current state of world rain (whether it hit or not, does it currently cut off music)
+</td></tr>
+<tr>
+<td>region</td>
+<td>Field</td>
+<td>Object holding some extra data about current region's layout (mostly data defined in region properties file, such as subregions or scav spawn chances, DLL eye colors, number of allowed overseers<small><sup><a href="/wiki/Category:Verification_Needed" title="Category:Verification Needed">[verify]</a></sup></small>)
+</td></tr>
+<tr>
+<td>shelters</td>
+<td>Field</td>
+<td>Array of room indices of all rooms marked as shelters
+</td></tr>
+<tr>
+<td>singleRoomWorld</td>
+<td>Field</td>
+<td>Whether the world is an arena world
+</td></tr>
+<tr>
+<td>spawners</td>
+<td>Field</td>
+<td>Array of spawners - objects holding information about creature spawns, recent deaths and respawn times. Also includes lineages.
+</td></tr>
+<tr>
+<td>swarmRooms</td>
+<td>Field</td>
+<td>Array of room indices of rooms marked with SWARMROOM tag in world_xx file.
+</td></tr>
+<tr>
+<td>worldProcesses</td>
+<td>Field</td>
+<td>List of "world processes" - special objects that are attached to current world and receive updates alongside it. This includes region-wide coordinators, like ScavengerWorldAI and FliesWorldAI.
+</td></tr>
+<tr>
+<td>firstRoomIndex</td>
+<td>Property</td>
+<td>Global index of the first room in the region.
+</td></tr>
+<tr>
+<td>game</td>
+<td>Property</td>
+<td>RainWorldGame this world belongs to
+</td></tr>
+<tr>
+<td>RegionState</td>
+<td>Property</td>
+<td>Object containing save data about the region (current living creatures, saved objects, consumed consumables, etc). More detail should be in <a href="/wiki/Rain_World_Code_Structure/Save_Data?action=edit&amp;redlink=1" class="new" title="Rain World Code Structure/Save Data (page does not exist)">Savedata page</a>.
+</td></tr>
+<tr>
+<td>AddWorldProcess</td>
+<td>Method</td>
+<td>Adds a world process to the world's process list.
+</td></tr>
+<tr>
+<td>GetAbstractRoom (multiple overloads)</td>
+<td>Method</td>
+<td>Returns an abstract room queried by WorldCoordinate, global index or name. When querying by name, "OFFSCREEN" corresponds to offscreen den. Returns null if room was not found.
+</td></tr>
+</tbody></table>
+<!-- 
+NewPP limit report
+Parsed by mw193
+Cached time: 20251207060447
+Cache expiry: 1296000
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.128 seconds
+Real time usage: 0.147 seconds
+Preprocessor visited node count: 87/1000000
+Post‐expand include size: 1274/2097152 bytes
+Template argument size: 154/2097152 bytes
+Highest expansion depth: 9/100
+Expensive parser function count: 0/99
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 4267/5000000 bytes
+Lua time usage: 0.014/10.000 seconds
+Lua memory usage: 629588/52428800 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%  131.122      1 -total
+ 97.73%  128.147      1 Template:Todo
+ 94.79%  124.288      1 Template:Mbox
+ 30.11%   39.477      1 Template:Pixelated
+  2.15%    2.819      1 Template:Cn
+  1.83%    2.399      1 Template:Space
+-->
+
+<!-- Saved in parser cache with key rainworldmoddingwiki:pcache:204:|#|:idhash:canonical and timestamp 20251207060447 and revision id 528. Rendering was triggered because: page-view
+ -->
+</div><noscript><img src="https://rainworldmodding.miraheze.org/wiki/Special:CentralAutoLogin/start?useformat=desktop&amp;type=1x1&amp;usesul3=0" alt="" width="1" height="1" style="border: none; position: absolute;"></noscript>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://rainworldmodding.miraheze.org/wiki/Rain_World_Code_Structure/World?oldid=528">https://rainworldmodding.miraheze.org/wiki/Rain_World_Code_Structure/World?oldid=528</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/wiki/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/wiki/Category:Unhelpful_todos" title="Category:Unhelpful todos">Unhelpful todos</a></li><li><a href="/wiki/Category:To_do" title="Category:To do">To do</a></li><li><a href="/wiki/Category:Verification_Needed" title="Category:Verification Needed">Verification Needed</a></li></ul></div></div>
+	</div>
+</div>
+<div id='mw-data-after-content'>
+	<div class="mw-cookiewarning-container"><div class="mw-cookiewarning-text"><span>Cookies help us deliver our services. By using our services, you agree to our use of cookies.</span></div><form method="POST"><div class='oo-ui-layout oo-ui-horizontalLayout'><span class='oo-ui-widget oo-ui-widget-enabled oo-ui-buttonElement oo-ui-buttonElement-framed oo-ui-labelElement oo-ui-flaggedElement-progressive oo-ui-buttonWidget'><a role='button' tabindex='0' href='https://meta.miraheze.org/wiki/Special:MyLanguage/Privacy_Policy#2._Cookies' rel='nofollow' class='oo-ui-buttonElement-button'><span class='oo-ui-iconElement-icon oo-ui-iconElement-noIcon oo-ui-image-progressive'></span><span class='oo-ui-labelElement-label'>More information</span><span class='oo-ui-indicatorElement-indicator oo-ui-indicatorElement-noIndicator oo-ui-image-progressive'></span></a></span><span class='oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-buttonElement oo-ui-buttonElement-framed oo-ui-labelElement oo-ui-flaggedElement-primary oo-ui-flaggedElement-progressive oo-ui-buttonInputWidget'><button type='submit' tabindex='0' name='disablecookiewarning' value='OK' class='oo-ui-inputWidget-input oo-ui-buttonElement-button'><span class='oo-ui-iconElement-icon oo-ui-iconElement-noIcon oo-ui-image-invert'></span><span class='oo-ui-labelElement-label'>OK</span><span class='oo-ui-indicatorElement-indicator oo-ui-indicatorElement-noIndicator oo-ui-image-invert'></span></button></span></div></form></div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/wiki/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/wiki/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-createaccount" class="mw-list-item"><a href="/wiki/Special:CreateAccount?returnto=Rain+World+Code+Structure%2FWorld" title="You are encouraged to create an account and log in; however, it is not mandatory"><span>Create account</span></a></li><li id="pt-login" class="mw-list-item"><a href="/wiki/Special:UserLogin?returnto=Rain+World+Code+Structure%2FWorld" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/wiki/Rain_World_Code_Structure/World" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="/wiki/Talk:Rain_World_Code_Structure/World?action=edit&amp;redlink=1" rel="discussion" class="new" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/wiki/Rain_World_Code_Structure/World"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/wiki/Rain_World_Code_Structure/World?action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/wiki/Rain_World_Code_Structure/World?action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-purge" class="mw-list-item"><a href="/wiki/Rain_World_Code_Structure/World?action=purge"><span>Purge</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/w/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search Rain World Modding" aria-label="Search Rain World Modding" autocapitalize="sentences" spellcheck="false" title="Search Rain World Modding [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/wiki/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage-description" class="mw-list-item"><a href="/wiki/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main page</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/wiki/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li><li id="n-randompage" class="mw-list-item"><a href="/wiki/Special:Random" title="Load a random page [x]" accesskey="x"><span>Random page</span></a></li><li id="n-help-mediawiki" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents"><span>Help about MediaWiki</span></a></li><li id="n-specialpages" class="mw-list-item"><a href="/wiki/Special:SpecialPages"><span>Special pages</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/wiki/Special:WhatLinksHere/Rain_World_Code_Structure/World" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/wiki/Special:RecentChangesLinked/Rain_World_Code_Structure/World" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/wiki/Rain_World_Code_Structure/World?oldid=528" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/wiki/Rain_World_Code_Structure/World?action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/wiki/Special:CiteThisPage?page=Rain_World_Code_Structure%2FWorld&amp;id=528&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li><li id="t-urlshortener" class="mw-list-item"><a href="/wiki/Special:UrlShortener?url=https%3A%2F%2Frainworldmodding.miraheze.org%2Fwiki%2FRain_World_Code_Structure%2FWorld"><span>Get shortened URL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on July 19, 2023, at 18:19.</li>
+	<li id="footer-info-copyright">Content is available under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) unless otherwise noted.</li>
+</ul>
+
+	<ul id="footer-places">
+	<li id="footer-places-privacy"><a href="https://meta.miraheze.org/wiki/Special:MyLanguage/Privacy_Policy">Privacy policy</a></li>
+	<li id="footer-places-about"><a href="/wiki/Rain_World_Modding:About">About Rain World Modding</a></li>
+	<li id="footer-places-disclaimers"><a href="/wiki/Rain_World_Modding:General_disclaimer">Disclaimers</a></li>
+	<li id="footer-places-termsofservice"><a href="https://meta.miraheze.org/wiki/Special:MyLanguage/Terms_of_Use">Terms of Use</a></li>
+	<li id="footer-places-donate"><a href="https://meta.miraheze.org/wiki/Special:MyLanguage/Donate">Donate to Miraheze</a></li>
+	<li id="footer-places-mobileview"><a href="https://rainworldmodding.miraheze.org/wiki/Rain_World_Code_Structure/World?mobileaction=toggle_view_mobile" class="noprint stopMobileRedirectToggle">Mobile view</a></li>
+</ul>
+
+	<ul id="footer-icons" class="noprint">
+	<li id="footer-mirahezeico"><a href="https://meta.miraheze.org/wiki/Special:MyLanguage/Miraheze_Meta" class="cdx-button cdx-button--fake-button cdx-button--size-large cdx-button--fake-button--enabled"><img src="https://static.wikitide.net/commonswiki/f/fe/Powered_by_Miraheze_(no_box).svg" alt="Hosted by Miraheze" width="88" height="31" loading="lazy"></a></li>
+	<li id="footer-copyrightico"><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="cdx-button cdx-button--fake-button cdx-button--size-large cdx-button--fake-button--enabled"><img src="https://meta.miraheze.org/1.44/resources/assets/licenses/cc-by-sa.png" alt="Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)" width="88" height="31" loading="lazy"></a></li>
+	<li id="footer-poweredbyico"><a href="https://www.mediawiki.org/" class="cdx-button cdx-button--fake-button cdx-button--size-large cdx-button--fake-button--enabled"><picture><source media="(min-width: 500px)" srcset="/1.44/resources/assets/poweredby_mediawiki.svg" width="88" height="31"><img src="/1.44/resources/assets/mediawiki_compact.svg" alt="Powered by MediaWiki" lang="en" width="25" height="25" loading="lazy"></picture></a></li>
+</ul>
+
+</footer>
+
+<div class="mw-portlet mw-portlet-dock-bottom emptyPortlet vector-menu-portal portal" id="p-dock-bottom">
+	<ul>
+		
+	</ul>
+</div>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgHostname":"mw162","wgBackendResponseTime":154,"wgPageParseReport":{"limitreport":{"cputime":"0.128","walltime":"0.147","ppvisitednodes":{"value":87,"limit":1000000},"postexpandincludesize":{"value":1274,"limit":2097152},"templateargumentsize":{"value":154,"limit":2097152},"expansiondepth":{"value":9,"limit":100},"expensivefunctioncount":{"value":0,"limit":99},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":4267,"limit":5000000},"timingprofile":["100.00%  131.122      1 -total"," 97.73%  128.147      1 Template:Todo"," 94.79%  124.288      1 Template:Mbox"," 30.11%   39.477      1 Template:Pixelated","  2.15%    2.819      1 Template:Cn","  1.83%    2.399      1 Template:Space"]},"scribunto":{"limitreport-timeusage":{"value":"0.014","limit":"10.000"},"limitreport-memusage":{"value":629588,"limit":52428800}},"cachereport":{"origin":"mw193","timestamp":"20251207060447","ttl":1296000,"transientcontent":false}}});});</script>
+	<script>
+	var _paq = window._paq = window._paq || [];
+	if ( 1 ) {
+		_paq.push(['disableCookies']);
+	}
+	if ( 0 ) {
+		_paq.push(['setRequestMethod', 'GET']);
+	}
+	_paq.push(['trackPageView']);
+	_paq.push(['enableLinkTracking']);
+	(function() {
+		var u = "https://analytics.wikitide.net/";
+		_paq.push(['setTrackerUrl', u+'matomo.php']);
+		_paq.push(['setDocumentTitle', "rainworldmoddingwiki" + " - " + "Rain World Code Structure/World"]);
+		_paq.push(['setSiteId', 6199]);
+		if ( 1 ) {
+			_paq.push(['setCustomDimension', 1, "Anonymous"]);
+		}
+		if ( 1 ) {
+			_paq.push(['addTracker', u + 'matomo.php', 1]);
+		}
+		var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+		g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+	})();
+	</script>
+	<noscript><p><img src="https://analytics.wikitide.net/matomo.php?idsite=6199&amp;rec=1&amp;action_name=Rain_World_Code_Structure/World" style="border: 0;" alt="" /></p></noscript>
+</body>
+</html>

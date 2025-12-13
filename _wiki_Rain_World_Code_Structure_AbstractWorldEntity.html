@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Rain World Code Structure/AbstractWorldEntity - Rain World Modding</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )rainworldmoddingwikimwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"mdy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"f138eaea174721f91e443e11","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Rain_World_Code_Structure/AbstractWorldEntity","wgTitle":"Rain World Code Structure/AbstractWorldEntity","wgCurRevisionId":494,"wgRevisionId":494,"wgArticleId":193,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Cleanup needed","Verification Needed"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Rain_World_Code_Structure/AbstractWorldEntity","wgRelevantArticleId":193,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgNoticeProject":"optout","wgCiteReferencePreviewsActive":true,"wgMFDisplayWikibaseDescriptions":{"search":false,"nearby":false,"watchlist":false,"tagline":false},"wgMediaViewerOnClick":true,"wgMediaViewerEnabledByDefault":true,"wgVisualEditor":{"pageLanguageCode":"en","pageLanguageDir":"ltr","pageVariantFallbacks":"en"},"wgCheckUserClientHintsHeadersJsApi":["brands","architecture","bitness","fullVersionList","mobile","model","platform","platformVersion"],"wgIsMobile":false,"JSBreadCrumbs":{"SiteMaxCrumbs":5,"GlobalMaxCrumbs":20,"ShowAction":false,"ShowSite":false,"Domain":false,"HorizontalSeparator":"»","Horizontal":true,"CSSSelector":[],"LeadingDescription":"Last 5 Pages Viewed:","MaxLength":40,"PageName":"Rain World Code Structure/AbstractWorldEntity","Action":""},"wgEditSubmitButtonLabelPublish":false};
+RLSTATE={"ext.globalCssJs.user.styles":"ready","site.styles":"ready","user.styles":"ready","ext.globalCssJs.user":"ready","user":"ready","user.options":"loading","skins.vector.styles.legacy":"ready","jquery.tablesorter.styles":"ready","ext.socialprofile.responsive":"ready","ext.CookieWarning.styles":"ready","oojs-ui-core.styles":"ready","oojs-ui.styles.indicators":"ready","mediawiki.widgets.styles":"ready","oojs-ui-core.icons":"ready","ext.MobileDetect.nomobile":"ready","ext.embedVideo.styles":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","jquery.tablesorter","skins.vector.legacy.js","ext.centralNotice.geoIP","ext.centralNotice.startUp","ext.checkUser.clientHints","ext.CookieWarning","ext.echo.centralauth","ext.eventLogging","ext.urlShortener.toolbar","ext.JSBreadCrumbs","mmv.bootstrap","ext.embedVideo.overlay","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.centralauth.centralautologin","ext.purge"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=ext.CookieWarning.styles%7Cext.MobileDetect.nomobile%7Cext.embedVideo.styles%7Cext.socialprofile.responsive%7Cext.visualEditor.desktopArticleTarget.noscript%7Cjquery.tablesorter.styles%7Cmediawiki.widgets.styles%7Coojs-ui-core.icons%2Cstyles%7Coojs-ui.styles.indicators%7Cskins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/w/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.44.2">
+<meta name="referrer" content="origin">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="Base class for all abstract LOD entities. AbstractWorldEntity`s one child class is AbstractPhysicalObject, and AbstractWorldEntity is never instantiated in vanilla...">
+<meta name="twitter:site" content="">
+<meta name="twitter:card" content="summary">
+<meta name="viewport" content="width=1120">
+<meta property="og:title" content="Rain World Code Structure/AbstractWorldEntity - Rain World Modding">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="//static.wikitide.net">
+<link rel="icon" href="https://static.miraheze.org/rainworldmoddingwiki/3/3d/Hardhatcat.png">
+<link rel="search" type="application/opensearchdescription+xml" href="/w/rest.php/v1/search" title="Rain World Modding (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://rainworldmodding.miraheze.org/w/api.php?action=rsd">
+<link rel="canonical" href="https://rainworldmodding.miraheze.org/wiki/Rain_World_Code_Structure/AbstractWorldEntity">
+<link rel="alternate" type="application/atom+xml" title="Rain World Modding Atom feed" href="/wiki/Special:RecentChanges?feed=atom">
+<link rel="dns-prefetch" href="https://meta.miraheze.org" />
+<meta property="og:title" content="Rain World Code Structure/AbstractWorldEntity">
+<meta property="og:site_name" content="Rain World Modding">
+<meta property="og:url" content="https://rainworldmodding.miraheze.org/wiki/Rain_World_Code_Structure/AbstractWorldEntity">
+<meta property="og:description" content="Base class for all abstract LOD entities. AbstractWorldEntity`s one child class is AbstractPhysicalObject, and AbstractWorldEntity is never instantiated in vanilla...">
+<meta property="og:image" content="https://static.miraheze.org/rainworldmoddingwiki/3/3d/Hardhatcat.png">
+<meta property="article:modified_time" content="2023-04-18T14:19:56Z">
+<meta property="article:published_time" content="2023-04-18T14:19:56Z">
+<script type="application/ld+json">{"@context":"http:\/\/schema.org","@type":"Article","name":"Rain World Code Structure\/AbstractWorldEntity - Rain World Modding","headline":"Rain World Code Structure\/AbstractWorldEntity - Rain World Modding","mainEntityOfPage":"Rain World Code Structure\/AbstractWorldEntity","identifier":"https:\/\/rainworldmodding.miraheze.org\/wiki\/Rain_World_Code_Structure\/AbstractWorldEntity","url":"https:\/\/rainworldmodding.miraheze.org\/wiki\/Rain_World_Code_Structure\/AbstractWorldEntity","description":"Base class for all abstract LOD entities. AbstractWorldEntity`s one child class is AbstractPhysicalObject, and AbstractWorldEntity is never instantiated in vanilla...","dateModified":"2023-04-18T14:19:56Z","datePublished":"2023-04-18T14:19:56Z","image":{"@type":"ImageObject","url":"https:\/\/static.miraheze.org\/rainworldmoddingwiki\/3\/3d\/Hardhatcat.png"},"author":{"@type":"Organization","name":"Rain World Modding","url":"https:\/\/rainworldmodding.miraheze.org","logo":{"@type":"ImageObject","url":"https:\/\/static.miraheze.org\/rainworldmoddingwiki\/3\/3d\/Hardhatcat.png","caption":"Rain World Modding"}},"publisher":{"@type":"Organization","name":"Rain World Modding","url":"https:\/\/rainworldmodding.miraheze.org","logo":{"@type":"ImageObject","url":"https:\/\/static.miraheze.org\/rainworldmoddingwiki\/3\/3d\/Hardhatcat.png","caption":"Rain World Modding"}},"potentialAction":{"@type":"SearchAction","target":"https:\/\/rainworldmodding.miraheze.org\/wiki\/Special:Search?search={search_term}","query-input":"required name=search_term"}}</script>
+<link rel="dns-prefetch" href="login.miraheze.org">
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Rain_World_Code_Structure_AbstractWorldEntity rootpage-Rain_World_Code_Structure skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"><!-- CentralNotice --></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Rain World Code Structure/AbstractWorldEntity</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From Rain World Modding</div>
+		<div id="contentSub"><div id="mw-content-subtitle"><div class="subpages">&lt; <bdi dir="ltr"><a href="/wiki/Rain_World_Code_Structure" title="Rain World Code Structure">Rain World Code Structure</a></bdi></div></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><div class="nomobile"><table style="padding: 2px; border-radius: 0.5em; border: 1px solid gray;">
+<tbody><tr>
+<td><p><span style="margin-right:15px"><span class="mw-valign-middle" typeof="mw:File"><a href="/wiki/File:Hardhatcat.png" class="mw-file-description"><img src="//static.wikitide.net/rainworldmoddingwiki/thumb/3/3d/Hardhatcat.png/47px-Hardhatcat.png" decoding="async" width="47" height="40" class="mw-file-element" srcset="//static.wikitide.net/rainworldmoddingwiki/thumb/3/3d/Hardhatcat.png/71px-Hardhatcat.png 1.5x, //static.wikitide.net/rainworldmoddingwiki/thumb/3/3d/Hardhatcat.png/94px-Hardhatcat.png 2x" data-file-width="132" data-file-height="112" /></a></span></span></p></td>
+<td><b>Cleanup needed</b>
+<div class="amsmalltext">
+This article needs structural or tonal clean-up to meet quality standards. Feel free to help <span class="plainlinks"><a rel="nofollow" class="external text" href="https://rainworldmodding.miraheze.org/wiki/Rain_World_Code_Structure/AbstractWorldEntity">improve</a></span> it.<p class="mw-empty-elt"></p>
+</div></td></tr></tbody></table></div>
+<p>Base class for all abstract <a href="/wiki/Rain_World_Code_Structure/LOD" title="Rain World Code Structure/LOD">LOD</a> entities. <b>AbstractWorldEntity</b>`s one child class is <b>AbstractPhysicalObject</b>, and AbstractWorldEntity is never instantiated in vanilla (so in practice everything in abstract world is an AbstractPhysicalObject).
+</p>
+<table class="wikitable sortable">
+<caption>AbstractWorldEntity useful members
+</caption>
+<tbody><tr>
+<th>Member</th>
+<th>Kind</th>
+<th>Description
+</th></tr>
+<tr>
+<td>Abstractize</td>
+<td>method</td>
+<td>Called when entity should switch from realized to abstract state. Does nothing on this class (implementation is on AbstractPhysicalObject)
+</td></tr>
+<tr>
+<td>Destroy</td>
+<td>method</td>
+<td>Marks entity for deletion at the end<small><sup><a href="/wiki/Category:Verification_Needed" title="Category:Verification Needed">[verify]</a></sup></small> of the frame.
+</td></tr>
+<tr>
+<td>IsEnteringDen</td>
+<td>method</td>
+<td>Called when entering a creature den (not player shelter).
+</td></tr>
+<tr>
+<td>IsExitingDen</td>
+<td>method</td>
+<td>Called when exiting a creature den (not player shelter).
+</td></tr>
+<tr>
+<td>Update</td>
+<td>method</td>
+<td>Called every few frames. Argument <code>time</code> tells it how many frames have passed since last update.
+</td></tr>
+<tr>
+<td>Room</td>
+<td>property</td>
+<td>Returns abstract room this entity is in.
+</td></tr>
+<tr>
+<td>ID</td>
+<td>field</td>
+<td>Unique identifier of the entity. Used for generating properties of many things (for example, each time a creature with individual cosmetic variations, such as a Scavenger, is realized, it uses its ID as a seed to deterministically generate these stats)
+</td></tr>
+<tr>
+<td>InDen</td>
+<td>field</td>
+<td>Whether the entity is currently inside a creature den
+</td></tr>
+<tr>
+<td>pos</td>
+<td>field</td>
+<td>A <code>WorldCoordinate</code> of the creature. Stores room index and tile position of the entity.
+</td></tr>
+<tr>
+<td>slatedForDeletion</td>
+<td>field</td>
+<td>Whether entity should be deleted next abstract update
+</td></tr>
+<tr>
+<td>world</td>
+<td>field</td>
+<td>Reference to the World object entity belongs to
+</td></tr></tbody></table>
+<table class="wikitable sortable">
+<caption>AbstractPhysicalObject useful members
+</caption>
+<tbody><tr>
+<th>Member</th>
+<th>Kind</th>
+<th>Description
+</th></tr>
+<tr>
+<td>ChangeRooms</td>
+<td>method</td>
+<td>Moves instance from one room to another
+</td></tr>
+<tr>
+<td>GetAllConnectedObjects</td>
+<td>method</td>
+<td>Returns a list of all objects the instance is connected to
+</td></tr>
+<tr>
+<td>LoseAllStuckObjects</td>
+<td>method</td>
+<td>Unsticks all connected objects from itself
+</td></tr>
+<tr>
+<td>Move</td>
+<td>method</td>
+<td>Moves entity from one tile to another
+</td></tr>
+<tr>
+<td>Realize</td>
+<td>method</td>
+<td>Creates an appropriate realized object attached to this entity, without placing it in current room. Probably not for direct use<small><sup><a href="/wiki/Category:Verification_Needed" title="Category:Verification Needed">[verify]</a></sup></small>
+</td></tr>
+<tr>
+<td>RealizeInRoom</td>
+<td>method</td>
+<td>Creates an appropriate realized object attached to this entity, and adds it to current room
+</td></tr>
+<tr>
+<td>ToString</td>
+<td>method</td>
+<td>Returns a serialization string for this entity
+</td></tr>
+<tr>
+<td>destroyOnAbstraction</td>
+<td>field</td>
+<td>Whether this object should be destroyed when it exits realized space
+</td></tr>
+<tr>
+<td>realizedObject</td>
+<td>field</td>
+<td>Realized part of the entity. Null while in abstract LOD
+</td></tr>
+<tr>
+<td>stuckObjects</td>
+<td>field</td>
+<td>List of other objects that have been stuck to this one
+</td></tr>
+<tr>
+<td>tracker</td>
+<td>field</td>
+<td>An object carrying data the game uses for respawning key items, such as pearls or hunter's neuron. Null for most entities
+</td></tr>
+<tr>
+<td>type</td>
+<td>field</td>
+<td>An ExtEnum telling what kind of object this is (a spear, a neuron, a creature etc)
+</td></tr>
+<tr>
+<td>unrecognizedAttributes</td>
+<td>field</td>
+<td><b>An array of arbitrary strings attached to the instance. Contains data the game cannot parse. Saved appropriately, can be used by mods to attach data to AbstractPhysicalObjects</b>
+</td></tr></tbody></table>
+<div class="mw-heading mw-heading2"><h2 id="Child_classes">Child classes</h2></div>
+<p>Notable subcategories of AbstractPhysicalObject:
+</p>
+<ul><li><b>AbstractConsumable</b> - things that respawn on a timer. These are abstract representations for consumables placed in devtools, such as waternuts and flashbangs.</li>
+<li><b><a href="/wiki/Rain_World_Code_Structure/AbstractCreature?action=edit&amp;redlink=1" class="new" title="Rain World Code Structure/AbstractCreature (page does not exist)">AbstractCreature</a></b> - all abstract LOD creatures</li></ul>
+<div class="mw-heading mw-heading2"><h2 id="Interfaces">Interfaces</h2></div>
+<p>AWE/APO do not have any interfaces.
+</p>
+<!-- 
+NewPP limit report
+Parsed by mw193
+Cached time: 20251205044530
+Cache expiry: 1296000
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.028 seconds
+Real time usage: 0.034 seconds
+Preprocessor visited node count: 88/1000000
+Post‐expand include size: 2643/2097152 bytes
+Template argument size: 883/2097152 bytes
+Highest expansion depth: 12/100
+Expensive parser function count: 0/99
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   13.082      1 -total
+ 82.86%   10.840      1 Template:Cleanup
+ 61.25%    8.013      1 Template:BadgeBase
+ 42.69%    5.585      1 Template:Ambox
+ 20.07%    2.625      1 Template:Fullurl
+ 15.70%    2.054      2 Template:Cn
+-->
+
+<!-- Saved in parser cache with key rainworldmoddingwiki:pcache:193:|#|:idhash:canonical and timestamp 20251205044530 and revision id 494. Rendering was triggered because: page-view
+ -->
+</div><noscript><img src="https://rainworldmodding.miraheze.org/wiki/Special:CentralAutoLogin/start?useformat=desktop&amp;type=1x1&amp;usesul3=0" alt="" width="1" height="1" style="border: none; position: absolute;"></noscript>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://rainworldmodding.miraheze.org/wiki/Rain_World_Code_Structure/AbstractWorldEntity?oldid=494">https://rainworldmodding.miraheze.org/wiki/Rain_World_Code_Structure/AbstractWorldEntity?oldid=494</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/wiki/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/wiki/Category:Cleanup_needed" title="Category:Cleanup needed">Cleanup needed</a></li><li><a href="/wiki/Category:Verification_Needed" title="Category:Verification Needed">Verification Needed</a></li></ul></div></div>
+	</div>
+</div>
+<div id='mw-data-after-content'>
+	<div class="mw-cookiewarning-container"><div class="mw-cookiewarning-text"><span>Cookies help us deliver our services. By using our services, you agree to our use of cookies.</span></div><form method="POST"><div class='oo-ui-layout oo-ui-horizontalLayout'><span class='oo-ui-widget oo-ui-widget-enabled oo-ui-buttonElement oo-ui-buttonElement-framed oo-ui-labelElement oo-ui-flaggedElement-progressive oo-ui-buttonWidget'><a role='button' tabindex='0' href='https://meta.miraheze.org/wiki/Special:MyLanguage/Privacy_Policy#2._Cookies' rel='nofollow' class='oo-ui-buttonElement-button'><span class='oo-ui-iconElement-icon oo-ui-iconElement-noIcon oo-ui-image-progressive'></span><span class='oo-ui-labelElement-label'>More information</span><span class='oo-ui-indicatorElement-indicator oo-ui-indicatorElement-noIndicator oo-ui-image-progressive'></span></a></span><span class='oo-ui-widget oo-ui-widget-enabled oo-ui-inputWidget oo-ui-buttonElement oo-ui-buttonElement-framed oo-ui-labelElement oo-ui-flaggedElement-primary oo-ui-flaggedElement-progressive oo-ui-buttonInputWidget'><button type='submit' tabindex='0' name='disablecookiewarning' value='OK' class='oo-ui-inputWidget-input oo-ui-buttonElement-button'><span class='oo-ui-iconElement-icon oo-ui-iconElement-noIcon oo-ui-image-invert'></span><span class='oo-ui-labelElement-label'>OK</span><span class='oo-ui-indicatorElement-indicator oo-ui-indicatorElement-noIndicator oo-ui-image-invert'></span></button></span></div></form></div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/wiki/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/wiki/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-createaccount" class="mw-list-item"><a href="/wiki/Special:CreateAccount?returnto=Rain+World+Code+Structure%2FAbstractWorldEntity" title="You are encouraged to create an account and log in; however, it is not mandatory"><span>Create account</span></a></li><li id="pt-login" class="mw-list-item"><a href="/wiki/Special:UserLogin?returnto=Rain+World+Code+Structure%2FAbstractWorldEntity" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/wiki/Rain_World_Code_Structure/AbstractWorldEntity" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="/wiki/Talk:Rain_World_Code_Structure/AbstractWorldEntity?action=edit&amp;redlink=1" rel="discussion" class="new" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/wiki/Rain_World_Code_Structure/AbstractWorldEntity"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/wiki/Rain_World_Code_Structure/AbstractWorldEntity?action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/wiki/Rain_World_Code_Structure/AbstractWorldEntity?action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-purge" class="mw-list-item"><a href="/wiki/Rain_World_Code_Structure/AbstractWorldEntity?action=purge"><span>Purge</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/w/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search Rain World Modding" aria-label="Search Rain World Modding" autocapitalize="sentences" spellcheck="false" title="Search Rain World Modding [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/wiki/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage-description" class="mw-list-item"><a href="/wiki/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main page</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/wiki/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li><li id="n-randompage" class="mw-list-item"><a href="/wiki/Special:Random" title="Load a random page [x]" accesskey="x"><span>Random page</span></a></li><li id="n-help-mediawiki" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents"><span>Help about MediaWiki</span></a></li><li id="n-specialpages" class="mw-list-item"><a href="/wiki/Special:SpecialPages"><span>Special pages</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/wiki/Special:WhatLinksHere/Rain_World_Code_Structure/AbstractWorldEntity" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/wiki/Special:RecentChangesLinked/Rain_World_Code_Structure/AbstractWorldEntity" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/wiki/Rain_World_Code_Structure/AbstractWorldEntity?oldid=494" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/wiki/Rain_World_Code_Structure/AbstractWorldEntity?action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/wiki/Special:CiteThisPage?page=Rain_World_Code_Structure%2FAbstractWorldEntity&amp;id=494&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li><li id="t-urlshortener" class="mw-list-item"><a href="/wiki/Special:UrlShortener?url=https%3A%2F%2Frainworldmodding.miraheze.org%2Fwiki%2FRain_World_Code_Structure%2FAbstractWorldEntity"><span>Get shortened URL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on April 18, 2023, at 14:19.</li>
+	<li id="footer-info-copyright">Content is available under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) unless otherwise noted.</li>
+</ul>
+
+	<ul id="footer-places">
+	<li id="footer-places-privacy"><a href="https://meta.miraheze.org/wiki/Special:MyLanguage/Privacy_Policy">Privacy policy</a></li>
+	<li id="footer-places-about"><a href="/wiki/Rain_World_Modding:About">About Rain World Modding</a></li>
+	<li id="footer-places-disclaimers"><a href="/wiki/Rain_World_Modding:General_disclaimer">Disclaimers</a></li>
+	<li id="footer-places-termsofservice"><a href="https://meta.miraheze.org/wiki/Special:MyLanguage/Terms_of_Use">Terms of Use</a></li>
+	<li id="footer-places-donate"><a href="https://meta.miraheze.org/wiki/Special:MyLanguage/Donate">Donate to Miraheze</a></li>
+	<li id="footer-places-mobileview"><a href="https://rainworldmodding.miraheze.org/wiki/Rain_World_Code_Structure/AbstractWorldEntity?mobileaction=toggle_view_mobile" class="noprint stopMobileRedirectToggle">Mobile view</a></li>
+</ul>
+
+	<ul id="footer-icons" class="noprint">
+	<li id="footer-mirahezeico"><a href="https://meta.miraheze.org/wiki/Special:MyLanguage/Miraheze_Meta" class="cdx-button cdx-button--fake-button cdx-button--size-large cdx-button--fake-button--enabled"><img src="https://static.wikitide.net/commonswiki/f/fe/Powered_by_Miraheze_(no_box).svg" alt="Hosted by Miraheze" width="88" height="31" loading="lazy"></a></li>
+	<li id="footer-copyrightico"><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="cdx-button cdx-button--fake-button cdx-button--size-large cdx-button--fake-button--enabled"><img src="https://meta.miraheze.org/1.44/resources/assets/licenses/cc-by-sa.png" alt="Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)" width="88" height="31" loading="lazy"></a></li>
+	<li id="footer-poweredbyico"><a href="https://www.mediawiki.org/" class="cdx-button cdx-button--fake-button cdx-button--size-large cdx-button--fake-button--enabled"><picture><source media="(min-width: 500px)" srcset="/1.44/resources/assets/poweredby_mediawiki.svg" width="88" height="31"><img src="/1.44/resources/assets/mediawiki_compact.svg" alt="Powered by MediaWiki" lang="en" width="25" height="25" loading="lazy"></picture></a></li>
+</ul>
+
+</footer>
+
+<div class="mw-portlet mw-portlet-dock-bottom emptyPortlet vector-menu-portal portal" id="p-dock-bottom">
+	<ul>
+		
+	</ul>
+</div>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgHostname":"mw181","wgBackendResponseTime":193,"wgPageParseReport":{"limitreport":{"cputime":"0.028","walltime":"0.034","ppvisitednodes":{"value":88,"limit":1000000},"postexpandincludesize":{"value":2643,"limit":2097152},"templateargumentsize":{"value":883,"limit":2097152},"expansiondepth":{"value":12,"limit":100},"expensivefunctioncount":{"value":0,"limit":99},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%   13.082      1 -total"," 82.86%   10.840      1 Template:Cleanup"," 61.25%    8.013      1 Template:BadgeBase"," 42.69%    5.585      1 Template:Ambox"," 20.07%    2.625      1 Template:Fullurl"," 15.70%    2.054      2 Template:Cn"]},"cachereport":{"origin":"mw193","timestamp":"20251205044530","ttl":1296000,"transientcontent":false}}});});</script>
+	<script>
+	var _paq = window._paq = window._paq || [];
+	if ( 1 ) {
+		_paq.push(['disableCookies']);
+	}
+	if ( 0 ) {
+		_paq.push(['setRequestMethod', 'GET']);
+	}
+	_paq.push(['trackPageView']);
+	_paq.push(['enableLinkTracking']);
+	(function() {
+		var u = "https://analytics.wikitide.net/";
+		_paq.push(['setTrackerUrl', u+'matomo.php']);
+		_paq.push(['setDocumentTitle', "rainworldmoddingwiki" + " - " + "Rain World Code Structure/AbstractWorldEntity"]);
+		_paq.push(['setSiteId', 6199]);
+		if ( 1 ) {
+			_paq.push(['setCustomDimension', 1, "Anonymous"]);
+		}
+		if ( 1 ) {
+			_paq.push(['addTracker', u + 'matomo.php', 1]);
+		}
+		var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+		g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+	})();
+	</script>
+	<noscript><p><img src="https://analytics.wikitide.net/matomo.php?idsite=6199&amp;rec=1&amp;action_name=Rain_World_Code_Structure/AbstractWorldEntity" style="border: 0;" alt="" /></p></noscript>
+</body>
+</html>

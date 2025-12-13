@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Rain World Code Structure/PhysicalObject - Rain World Modding</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )rainworldmoddingwikimwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"mdy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"d46a52f00fa1a6d58ab27b8d","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Rain_World_Code_Structure/PhysicalObject","wgTitle":"Rain World Code Structure/PhysicalObject","wgCurRevisionId":492,"wgRevisionId":492,"wgArticleId":195,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Unhelpful todos","To do","Verification Needed"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Rain_World_Code_Structure/PhysicalObject","wgRelevantArticleId":195,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgNoticeProject":"optout","wgCiteReferencePreviewsActive":true,"wgMFDisplayWikibaseDescriptions":{"search":false,"nearby":false,"watchlist":false,"tagline":false},"wgMediaViewerOnClick":true,"wgMediaViewerEnabledByDefault":true,"wgVisualEditor":{"pageLanguageCode":"en","pageLanguageDir":"ltr","pageVariantFallbacks":"en"},"wgCheckUserClientHintsHeadersJsApi":["brands","architecture","bitness","fullVersionList","mobile","model","platform","platformVersion"],"wgIsMobile":false,"JSBreadCrumbs":{"SiteMaxCrumbs":5,"GlobalMaxCrumbs":20,"ShowAction":false,"ShowSite":false,"Domain":false,"HorizontalSeparator":"»","Horizontal":true,"CSSSelector":[],"LeadingDescription":"Last 5 Pages Viewed:","MaxLength":40,"PageName":"Rain World Code Structure/PhysicalObject","Action":""},"wgEditSubmitButtonLabelPublish":false};
+RLSTATE={"ext.globalCssJs.user.styles":"ready","site.styles":"ready","user.styles":"ready","ext.globalCssJs.user":"ready","user":"ready","user.options":"loading","skins.vector.styles.legacy":"ready","jquery.tablesorter.styles":"ready","ext.socialprofile.responsive":"ready","ext.MobileDetect.nomobile":"ready","ext.embedVideo.styles":"ready","ext.visualEditor.desktopArticleTarget.noscript":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","jquery.tablesorter","skins.vector.legacy.js","ext.centralNotice.geoIP","ext.centralNotice.startUp","ext.checkUser.clientHints","ext.echo.centralauth","ext.eventLogging","ext.urlShortener.toolbar","ext.JSBreadCrumbs","mmv.bootstrap","ext.embedVideo.overlay","ext.visualEditor.desktopArticleTarget.init","ext.visualEditor.targetLoader","ext.centralauth.centralautologin","ext.purge"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=ext.MobileDetect.nomobile%7Cext.embedVideo.styles%7Cext.socialprofile.responsive%7Cext.visualEditor.desktopArticleTarget.noscript%7Cjquery.tablesorter.styles%7Cskins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/w/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.44.2">
+<meta name="referrer" content="origin">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="description" content="PhysicalObjects are main type of Realized LOD entities and a chunky subset of UADs. All PhysicalObjects are composed of BodyChunks. Every BodyChunk has circular...">
+<meta name="twitter:site" content="">
+<meta name="twitter:card" content="summary">
+<meta name="viewport" content="width=1120">
+<meta property="og:title" content="Rain World Code Structure/PhysicalObject - Rain World Modding">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="//static.wikitide.net">
+<link rel="icon" href="https://static.miraheze.org/rainworldmoddingwiki/3/3d/Hardhatcat.png">
+<link rel="search" type="application/opensearchdescription+xml" href="/w/rest.php/v1/search" title="Rain World Modding (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://rainworldmodding.miraheze.org/w/api.php?action=rsd">
+<link rel="canonical" href="https://rainworldmodding.miraheze.org/wiki/Rain_World_Code_Structure/PhysicalObject">
+<link rel="alternate" type="application/atom+xml" title="Rain World Modding Atom feed" href="/wiki/Special:RecentChanges?feed=atom">
+<link rel="dns-prefetch" href="https://meta.miraheze.org" />
+<meta property="og:title" content="Rain World Code Structure/PhysicalObject">
+<meta property="og:site_name" content="Rain World Modding">
+<meta property="og:url" content="https://rainworldmodding.miraheze.org/wiki/Rain_World_Code_Structure/PhysicalObject">
+<meta property="og:description" content="PhysicalObjects are main type of Realized LOD entities and a chunky subset of UADs. All PhysicalObjects are composed of BodyChunks. Every BodyChunk has circular...">
+<meta property="og:image" content="https://static.miraheze.org/rainworldmoddingwiki/3/3d/Hardhatcat.png">
+<meta property="article:modified_time" content="2023-04-18T14:02:57Z">
+<meta property="article:published_time" content="2023-04-18T14:02:57Z">
+<script type="application/ld+json">{"@context":"http:\/\/schema.org","@type":"Article","name":"Rain World Code Structure\/PhysicalObject - Rain World Modding","headline":"Rain World Code Structure\/PhysicalObject - Rain World Modding","mainEntityOfPage":"Rain World Code Structure\/PhysicalObject","identifier":"https:\/\/rainworldmodding.miraheze.org\/wiki\/Rain_World_Code_Structure\/PhysicalObject","url":"https:\/\/rainworldmodding.miraheze.org\/wiki\/Rain_World_Code_Structure\/PhysicalObject","description":"PhysicalObjects are main type of Realized LOD entities and a chunky subset of UADs. All PhysicalObjects are composed of BodyChunks. Every BodyChunk has circular...","dateModified":"2023-04-18T14:02:57Z","datePublished":"2023-04-18T14:02:57Z","image":{"@type":"ImageObject","url":"https:\/\/static.miraheze.org\/rainworldmoddingwiki\/3\/3d\/Hardhatcat.png"},"author":{"@type":"Organization","name":"Rain World Modding","url":"https:\/\/rainworldmodding.miraheze.org","logo":{"@type":"ImageObject","url":"https:\/\/static.miraheze.org\/rainworldmoddingwiki\/3\/3d\/Hardhatcat.png","caption":"Rain World Modding"}},"publisher":{"@type":"Organization","name":"Rain World Modding","url":"https:\/\/rainworldmodding.miraheze.org","logo":{"@type":"ImageObject","url":"https:\/\/static.miraheze.org\/rainworldmoddingwiki\/3\/3d\/Hardhatcat.png","caption":"Rain World Modding"}},"potentialAction":{"@type":"SearchAction","target":"https:\/\/rainworldmodding.miraheze.org\/wiki\/Special:Search?search={search_term}","query-input":"required name=search_term"}}</script>
+<link rel="dns-prefetch" href="login.miraheze.org">
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Rain_World_Code_Structure_PhysicalObject rootpage-Rain_World_Code_Structure skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"><!-- CentralNotice --></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Rain World Code Structure/PhysicalObject</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From Rain World Modding</div>
+		<div id="contentSub"><div id="mw-content-subtitle"><div class="subpages">&lt; <bdi dir="ltr"><a href="/wiki/Rain_World_Code_Structure" title="Rain World Code Structure">Rain World Code Structure</a></bdi></div></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><style data-mw-deduplicate="TemplateStyles:r1249">.mw-parser-output .mbox-outer{margin:1.5em 0;display:block}.mw-parser-output .mbox{border:2px solid;border-radius:1em;padding:0 0.5em;max-width:100%;display:inline-block;box-sizing:border-box}.mw-parser-output .mbox-contents{margin:0 auto;max-width:1000px}.mw-parser-output .mbox-grid{display:grid;align-items:center;justify-content:center;grid-auto-columns:minmax(0,1fr)auto minmax(0,1fr);max-width:1000px;margin:0 auto}.mw-parser-output .mbox-row1{display:contents;align-items:center;justify-content:center}.mw-parser-output .mbox-imageleft,.mw-parser-output .mbox-imageright,.mw-parser-output .mbox-noimageleft,.mw-parser-output .mbox-noimageright{padding:0.5em 0;box-sizing:border-box;grid-row:1/span 2;align-self:center}.mw-parser-output .mbox-imageleft img,.mw-parser-output .mbox-imageright img{max-width:initial;vertical-align:middle}.mw-parser-output .mbox-imageleft,.mw-parser-output .mbox-noimageleft{padding-right:0.5em;justify-self:right;text-align:right;grid-column:1}.mw-parser-output .mbox-imageright,.mw-parser-output .mbox-noimageright{padding-left:0.5em;justify-self:left;text-align:left;grid-column:3}.mw-parser-output .mbox-text,.mw-parser-output .mbox-big{margin:0;width:max-content;max-width:600px}.mw-parser-output .mbox-text{padding:0.5em 0;grid-row:2;align-self:start}.mw-parser-output .mbox-lonelytext{grid-row:1/span 2;align-self:center}.mw-parser-output .mbox-text>:first-child{margin-top:0}.mw-parser-output .mbox-text>:last-child{margin-bottom:0}.mw-parser-output .mbox-big{font-size:125%;font-weight:bold;padding:0.5em 0 0;grid-row:1;align-self:end}.mw-parser-output .mbox-below{padding:0 0 0.5em}@media(max-width:1000px){.mw-parser-output .mbox-big{font-size:115%}}.mw-parser-output .mbox-below>:first-child{margin-top:0}.mw-parser-output .mbox-below>:last-child{margin-bottom:0}.mw-parser-output .mbox-below .mw-references-wrap{border-top:2px solid #808080}.mw-parser-output .mbox{border-color:#808080;background-color:rgba(56,56,56,0.2)}.mw-parser-output .mbox-stub{border-color:#96b996;background-color:rgba(35,60,35,0.2)}.mw-parser-output .mbox-disambig{border-color:#c6a6cb;background-color:rgba(70,45,75,0.2)}.mw-parser-output .mbox-delete{border-color:#d7a39d;background-color:rgba(80,45,40,0.2)}.mw-parser-output .mbox-delete.mbox-speedy{border-color:#f36c67;background-color:rgba(95,35,30,0.2)}.mw-parser-output .mbox-copyright{border-color:#c49f34;background-color:rgba(195,155,50,0.2)}.mw-parser-output .mbox-knownissues{}.mw-parser-output .mbox.mbox-banner{width:100%;max-width:100%;clear:both;border-radius:0}@media(max-width:1000px){.mw-parser-output .mbox.mbox-banner{border-right:0;border-left:0;padding-right:0;padding-left:0}}.mw-parser-output .mbox-center{text-align:center}.mw-parser-output .mbox-center .mbox-big,.mw-parser-output .mbox-center .mbox-text{justify-self:center}.mw-parser-output .mbox-spoiler .mbox-noimageleft,.mw-parser-output .mbox-spoiler .mbox-noimageright{display:block}.mw-parser-output .mbox-downpour{border-color:#05d2d3;background-color:rgba(5,210,211,0.2)}.mw-parser-output .mbox-watcher{border-color:#0c1125;background-color:rgba(23,35,79,0.2)}.mw-parser-output .mbox-spoiler{border-color:#dd2299;background-color:rgba(100,20,90,0.2)}.mw-parser-output .mbox .smallimg{display:none}@media(max-width:1280px){.mw-parser-output .mbox-contents,.mw-parser-output .mbox-text,.mw-parser-output .mbox-below,.mw-parser-output .mbox-big{width:revert;max-width:100%}.mw-parser-output .mbox-grid{display:block}.mw-parser-output .mbox-row1{display:flex;flex-wrap:wrap}.mw-parser-output .mbox-big{align-self:center;flex:4 max-content}.mw-parser-output .mbox-imageleft,.mw-parser-output .mbox-imageright{flex:1}}@media(max-width:1000px){.mw-parser-output .mbox-row1{display:block;padding:0.5em 0 0}.mw-parser-output .mbox-imageleft,.mw-parser-output .mbox-big,.mw-parser-output .mbox-imageright{display:inline}.mw-parser-output .mbox-imageleft{float:left}.mw-parser-output .mbox-imageright{float:right}.mw-parser-output .mbox-noimageleft,.mw-parser-output .mbox-noimageright{display:none}.mw-parser-output .mbox .bigimg{display:none!important}.mw-parser-output .mbox .smallimg{display:revert!important}}</style><div class="mbox-outer"><div class="mbox mbox-todo"><div class="mbox-contents"><div class="mbox-grid"><div class="mbox-row1"><div class="mbox-imageleft"><span class="pixelated" typeof="mw:File"><span><img src="//static.wikitide.net/rainworldmoddingwiki/thumb/9/98/Scavputer.gif/72px-Scavputer.gif" decoding="async" width="72" height="72" class="mw-file-element" srcset="//static.wikitide.net/rainworldmoddingwiki/9/98/Scavputer.gif 1.5x" data-file-width="96" data-file-height="96" /></span></span></div><div class="mbox-big"><strong><b>To do:</b></strong></div><div class="mbox-noimageright"></div></div><div class="mbox-text">
+<p>(No text provided.)</p>
+</div></div></div></div></div>
+<p><b>PhysicalObject</b>s are main type of Realized <a href="/wiki/Rain_World_Code_Structure/LOD" title="Rain World Code Structure/LOD">LOD</a> entities and a chunky subset of <a href="/wiki/Rain_World_Code_Structure/UpdatableAndDeletable" title="Rain World Code Structure/UpdatableAndDeletable">UADs</a>.
+</p><p>All PhysicalObjects are composed of BodyChunks. Every BodyChunk has circular collision. Each PhysicalObject begins to a collision layer, of which there are 3 (0, 1 and 2).
+</p>
+<table class="wikitable sortable">
+<caption>PhysicalObject useful members
+</caption>
+<tbody><tr>
+<th>Member</th>
+<th>Kind</th>
+<th>Description
+</th></tr>
+<tr>
+<td>ChangeCollisionLayer</td>
+<td>method</td>
+<td>Sets collision layer of instance
+</td></tr>
+<tr>
+<td>collisionLayer</td>
+<td>field</td>
+<td>Current collision layer. Invalid value will produce error on trying to add into room
+</td></tr>
+<tr>
+<td>Collide</td>
+<td>method</td>
+<td>Called every time instance touches another
+</td></tr>
+<tr>
+<td>TerrainImpact</td>
+<td>method</td>
+<td>Called every time instance hits terrain
+</td></tr>
+<tr>
+<td>Grabbed</td>
+<td>method</td>
+<td>Called every time instance is grabbed by a creature
+</td></tr>
+<tr>
+<td>HitByWeapon</td>
+<td>method</td>
+<td>Called every time instance is hit by a throwable weapon (such as a Spear). Applying damage to creatures is handled by the weapon itself, outside of this method
+</td></tr>
+<tr>
+<td>HitByExplosion</td>
+<td>method</td>
+<td>Called every time instance is hit by an explosion. Applying damage to creatures is handled by the explosion itself, outside of this method
+</td></tr>
+<tr>
+<td>graphicsModule</td>
+<td>property</td>
+<td>Helper object that manages the instance's visuals. Not all PhysicalObject children have graphics modules (for example, most creatures do, but weapons don't)
+</td></tr>
+<tr>
+<td>InitiateGraphicsModule</td>
+<td>method</td>
+<td>Called when room containing instance becomes visible. Intended behavior: filling graphicsModule field (without adding it to room).
+</td></tr>
+<tr>
+<td>GraphicsModuleUpdated</td>
+<td>method</td>
+<td>Called every time after the Room attempts to update its graphics module
+</td></tr>
+<tr>
+<td>DisposeGraphicsModule</td>
+<td>method</td>
+<td>Called when room containing instance becomes no longer visible. Detaches and destroys graphics module
+</td></tr>
+<tr>
+<td>NewRoom</td>
+<td>method</td>
+<td>Called when instance is added to a new room<small><sup><a href="/wiki/Category:Verification_Needed" title="Category:Verification Needed">[verify]</a></sup></small>
+</td></tr>
+<tr>
+<td>PlaceInRoom</td>
+<td>method</td>
+<td>Adds instance to a selected room
+</td></tr>
+<tr>
+<td>bodyChunks</td>
+<td>property</td>
+<td>An array of BodyChunk objects composing instance's body. Should always be instantiated by the constructor
+</td></tr>
+<tr>
+<td>appendages</td>
+<td>field</td>
+<td>A list of appendages this instance has. Appendages don't directly collide with body chunks, but still collide with terrain and can be hit by weapons<small><sup><a href="/wiki/Category:Verification_Needed" title="Category:Verification Needed">[verify]</a></sup></small>. Should always be instantiated by the constructor. Instances with appendages should implement <code>PhysicalObject.IHaveAppendages</code>
+</td></tr>
+<tr>
+<td>bodyChunkConnections</td>
+<td>field</td>
+<td>Array of objects determining how different chunks are physically tied to each other. Should always be instantiated by the constructor (empty if no chunk connections)
+</td></tr>
+<tr>
+<td>Gravity</td>
+<td>property</td>
+<td>Gravity of object. Calculated by multiplying room-wide gravity with instance's personal g value. Setter just sets g
+</td></tr>
+<tr>
+<td>g</td>
+<td>field</td>
+<td>Instance's personal gravity multiplier
+</td></tr>
+<tr>
+<td>airFriction</td>
+<td>property</td>
+<td>Air friction determines how much instance's velocity decays every frame. Applies when out of water or partially submerged. <b>IMPORTANT</b>: Each frame chunk velocity is <i>multiplied</i> by friction value, so the expected value is in range between 0 and 1, usually very close to 1. If you set this to more than 1.0f, the object will accelerate exponentially!
+</td></tr>
+<tr>
+<td>waterFriction</td>
+<td>property</td>
+<td>Air friction determines how much instance's velocity decays every frame. Applies when out of water or partially submerged. <b>IMPORTANT</b>: Each frame chunk velocity is <i>multiplied</i> by friction value, so the expected value is in range between 0 and 1, usually very close to 1. If you set this to more than 1.0f, the object will accelerate exponentially!
+</td></tr>
+<tr>
+<td>buoyancy</td>
+<td>property</td>
+<td>How much water pushes the object out. 0f means no pushout (instance stays suspended), negative values make instance sink, positive make it float to the surface.
+</td></tr>
+<tr>
+<td>GoThroughFloors</td>
+<td>property</td>
+<td>Whether instance should fall through platforms. Can also be set on per-chunk basis, property setter here sets value for all chunks
+</td></tr>
+<tr>
+<td>CollideWithObjects</td>
+<td>property</td>
+<td>Whether instance should collide with other objects on the same physics layer. Can also be set on per-chunk basis, property setter here sets value for all chunks
+</td></tr>
+<tr>
+<td>CollideWithTerrain</td>
+<td>property</td>
+<td>Whether instance should collide with solid terrain tiles. Can also be set on per-chunk basis, property setter here sets value for all chunks
+</td></tr>
+<tr>
+<td>CollideWithSlopes</td>
+<td>property</td>
+<td>Whether instance should collide with slope terrain tiles. Can also be set on per-chunk basis, property setter here sets value for all chunks
+</td></tr>
+<tr>
+<td>submersion</td>
+<td>property</td>
+<td>Averaged submersion of all chunks
+</td></tr>
+<tr>
+<td>VisibilityBonus</td>
+<td>property</td>
+<td>Value used by AI on visual contact to roll for a creature spotting the instance. Positive values mean increased likelihood, negative means reduced likelihood
+</td></tr>
+<tr>
+<td>grabbedBy</td>
+<td>field</td>
+<td>List of things that are grabbing instance
+</td></tr></tbody></table>
+<div class="mw-heading mw-heading2"><h2 id="Child_classes">Child classes</h2></div>
+<p>This section describes notable subsets of PhysicalObject.
+</p>
+<ul><li><b>OracleSwarmer</b> - Different neurons</li>
+<li><b>PlayerCarryableItem</b> - Most items players can hold in one hand
+<ul><li><b>Weapon</b> - Spears, bombs and everything else that can be thrown with force</li></ul></li>
+<li><b><a href="/wiki/Rain_World_Code_Structure/Creature?action=edit&amp;redlink=1" class="new" title="Rain World Code Structure/Creature (page does not exist)">Creature</a></b> - all realized layer creatures. Detailed info on their own page</li></ul>
+<div class="mw-heading mw-heading2"><h2 id="Interfaces">Interfaces</h2></div>
+<p>These are interfaces available for PhysicalObject:
+</p>
+<table class="wikitable">
+
+<tbody><tr>
+<th>Interface</th>
+<th>Description
+</th></tr>
+<tr>
+<td>PhysicalObject.IHaveAppendages</td>
+<td>Implemented by objects with appendages. Required for appendages to function
+</td></tr>
+<tr>
+<td>IPlayerEdible</td>
+<td>Implemented by things that can be bitten and consumed by all players, like noodlefly children and pupa fruits
+</td></tr>
+<tr>
+<td>ITeleportingCreature</td>
+<td>Implemented by creatures that can teleport. In vanilla only implemented by overseers
+</td></tr></tbody></table>
+<!-- 
+NewPP limit report
+Parsed by mw201
+Cached time: 20251205221505
+Cache expiry: 1296000
+Reduced expiry: false
+Complications: []
+CPU time usage: 0.130 seconds
+Real time usage: 0.151 seconds
+Preprocessor visited node count: 94/1000000
+Post‐expand include size: 1374/2097152 bytes
+Template argument size: 154/2097152 bytes
+Highest expansion depth: 9/100
+Expensive parser function count: 0/99
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 4267/5000000 bytes
+Lua time usage: 0.015/10.000 seconds
+Lua memory usage: 629615/52428800 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%  122.227      1 -total
+ 97.24%  118.854      1 Template:Todo
+ 94.63%  115.665      1 Template:Mbox
+ 31.92%   39.011      1 Template:Pixelated
+  2.47%    3.018      2 Template:Cn
+  1.55%    1.889      1 Template:Space
+-->
+
+<!-- Saved in parser cache with key rainworldmoddingwiki:pcache:195:|#|:idhash:canonical and timestamp 20251205221505 and revision id 492. Rendering was triggered because: page-view
+ -->
+</div><noscript><img src="https://rainworldmodding.miraheze.org/wiki/Special:CentralAutoLogin/start?useformat=desktop&amp;type=1x1&amp;usesul3=0" alt="" width="1" height="1" style="border: none; position: absolute;"></noscript>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://rainworldmodding.miraheze.org/wiki/Rain_World_Code_Structure/PhysicalObject?oldid=492">https://rainworldmodding.miraheze.org/wiki/Rain_World_Code_Structure/PhysicalObject?oldid=492</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/wiki/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/wiki/Category:Unhelpful_todos" title="Category:Unhelpful todos">Unhelpful todos</a></li><li><a href="/wiki/Category:To_do" title="Category:To do">To do</a></li><li><a href="/wiki/Category:Verification_Needed" title="Category:Verification Needed">Verification Needed</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/wiki/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/wiki/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-createaccount" class="mw-list-item"><a href="/wiki/Special:CreateAccount?returnto=Rain+World+Code+Structure%2FPhysicalObject" title="You are encouraged to create an account and log in; however, it is not mandatory"><span>Create account</span></a></li><li id="pt-login" class="mw-list-item"><a href="/wiki/Special:UserLogin?returnto=Rain+World+Code+Structure%2FPhysicalObject" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/wiki/Rain_World_Code_Structure/PhysicalObject" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="/wiki/Talk:Rain_World_Code_Structure/PhysicalObject?action=edit&amp;redlink=1" rel="discussion" class="new" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/wiki/Rain_World_Code_Structure/PhysicalObject"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/wiki/Rain_World_Code_Structure/PhysicalObject?action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/wiki/Rain_World_Code_Structure/PhysicalObject?action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-purge" class="mw-list-item"><a href="/wiki/Rain_World_Code_Structure/PhysicalObject?action=purge"><span>Purge</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/w/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search Rain World Modding" aria-label="Search Rain World Modding" autocapitalize="sentences" spellcheck="false" title="Search Rain World Modding [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/wiki/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage-description" class="mw-list-item"><a href="/wiki/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main page</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/wiki/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li><li id="n-randompage" class="mw-list-item"><a href="/wiki/Special:Random" title="Load a random page [x]" accesskey="x"><span>Random page</span></a></li><li id="n-help-mediawiki" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents"><span>Help about MediaWiki</span></a></li><li id="n-specialpages" class="mw-list-item"><a href="/wiki/Special:SpecialPages"><span>Special pages</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/wiki/Special:WhatLinksHere/Rain_World_Code_Structure/PhysicalObject" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/wiki/Special:RecentChangesLinked/Rain_World_Code_Structure/PhysicalObject" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/wiki/Rain_World_Code_Structure/PhysicalObject?oldid=492" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/wiki/Rain_World_Code_Structure/PhysicalObject?action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/wiki/Special:CiteThisPage?page=Rain_World_Code_Structure%2FPhysicalObject&amp;id=492&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li><li id="t-urlshortener" class="mw-list-item"><a href="/wiki/Special:UrlShortener?url=https%3A%2F%2Frainworldmodding.miraheze.org%2Fwiki%2FRain_World_Code_Structure%2FPhysicalObject"><span>Get shortened URL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on April 18, 2023, at 14:02.</li>
+	<li id="footer-info-copyright">Content is available under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) unless otherwise noted.</li>
+</ul>
+
+	<ul id="footer-places">
+	<li id="footer-places-privacy"><a href="https://meta.miraheze.org/wiki/Special:MyLanguage/Privacy_Policy">Privacy policy</a></li>
+	<li id="footer-places-about"><a href="/wiki/Rain_World_Modding:About">About Rain World Modding</a></li>
+	<li id="footer-places-disclaimers"><a href="/wiki/Rain_World_Modding:General_disclaimer">Disclaimers</a></li>
+	<li id="footer-places-termsofservice"><a href="https://meta.miraheze.org/wiki/Special:MyLanguage/Terms_of_Use">Terms of Use</a></li>
+	<li id="footer-places-donate"><a href="https://meta.miraheze.org/wiki/Special:MyLanguage/Donate">Donate to Miraheze</a></li>
+	<li id="footer-places-mobileview"><a href="https://rainworldmodding.miraheze.org/wiki/Rain_World_Code_Structure/PhysicalObject?mobileaction=toggle_view_mobile" class="noprint stopMobileRedirectToggle">Mobile view</a></li>
+</ul>
+
+	<ul id="footer-icons" class="noprint">
+	<li id="footer-mirahezeico"><a href="https://meta.miraheze.org/wiki/Special:MyLanguage/Miraheze_Meta" class="cdx-button cdx-button--fake-button cdx-button--size-large cdx-button--fake-button--enabled"><img src="https://static.wikitide.net/commonswiki/f/fe/Powered_by_Miraheze_(no_box).svg" alt="Hosted by Miraheze" width="88" height="31" loading="lazy"></a></li>
+	<li id="footer-copyrightico"><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="cdx-button cdx-button--fake-button cdx-button--size-large cdx-button--fake-button--enabled"><img src="https://meta.miraheze.org/1.44/resources/assets/licenses/cc-by-sa.png" alt="Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)" width="88" height="31" loading="lazy"></a></li>
+	<li id="footer-poweredbyico"><a href="https://www.mediawiki.org/" class="cdx-button cdx-button--fake-button cdx-button--size-large cdx-button--fake-button--enabled"><picture><source media="(min-width: 500px)" srcset="/1.44/resources/assets/poweredby_mediawiki.svg" width="88" height="31"><img src="/1.44/resources/assets/mediawiki_compact.svg" alt="Powered by MediaWiki" lang="en" width="25" height="25" loading="lazy"></picture></a></li>
+</ul>
+
+</footer>
+
+<div class="mw-portlet mw-portlet-dock-bottom emptyPortlet vector-menu-portal portal" id="p-dock-bottom">
+	<ul>
+		
+	</ul>
+</div>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgHostname":"mw181","wgBackendResponseTime":182,"wgPageParseReport":{"limitreport":{"cputime":"0.130","walltime":"0.151","ppvisitednodes":{"value":94,"limit":1000000},"postexpandincludesize":{"value":1374,"limit":2097152},"templateargumentsize":{"value":154,"limit":2097152},"expansiondepth":{"value":9,"limit":100},"expensivefunctioncount":{"value":0,"limit":99},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":4267,"limit":5000000},"timingprofile":["100.00%  122.227      1 -total"," 97.24%  118.854      1 Template:Todo"," 94.63%  115.665      1 Template:Mbox"," 31.92%   39.011      1 Template:Pixelated","  2.47%    3.018      2 Template:Cn","  1.55%    1.889      1 Template:Space"]},"scribunto":{"limitreport-timeusage":{"value":"0.015","limit":"10.000"},"limitreport-memusage":{"value":629615,"limit":52428800}},"cachereport":{"origin":"mw201","timestamp":"20251205221505","ttl":1296000,"transientcontent":false}}});});</script>
+	<script>
+	var _paq = window._paq = window._paq || [];
+	if ( 1 ) {
+		_paq.push(['disableCookies']);
+	}
+	if ( 0 ) {
+		_paq.push(['setRequestMethod', 'GET']);
+	}
+	_paq.push(['trackPageView']);
+	_paq.push(['enableLinkTracking']);
+	(function() {
+		var u = "https://analytics.wikitide.net/";
+		_paq.push(['setTrackerUrl', u+'matomo.php']);
+		_paq.push(['setDocumentTitle', "rainworldmoddingwiki" + " - " + "Rain World Code Structure/PhysicalObject"]);
+		_paq.push(['setSiteId', 6199]);
+		if ( 1 ) {
+			_paq.push(['setCustomDimension', 1, "Anonymous"]);
+		}
+		if ( 1 ) {
+			_paq.push(['addTracker', u + 'matomo.php', 1]);
+		}
+		var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+		g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+	})();
+	</script>
+	<noscript><p><img src="https://analytics.wikitide.net/matomo.php?idsite=6199&amp;rec=1&amp;action_name=Rain_World_Code_Structure/PhysicalObject" style="border: 0;" alt="" /></p></noscript>
+</body>
+</html>
