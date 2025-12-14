@@ -1,8 +1,6 @@
 # Class Hierarchy Reference
 
-**Quick reference for navigating Rain World's codebase**
-
-This document provides a visual map of Rain World's class hierarchies. For conceptual explanations, see the other architecture documents. This is a reference for finding specific classes and understanding inheritance relationships.
+Visual map of Rain World's class hierarchies and inheritance relationships.
 
 ## Game Lifecycle Hierarchy
 
@@ -370,11 +368,8 @@ IHaveAppendages
   • Has appendages (tentacles, wings, etc.)
 ```
 
----
+## Related Documentation
 
-This reference covers the major hierarchies. For detailed class documentation, see the original Rain World modding wiki or use an IDE to explore the decompiled code.
-
-**Next**: Explore specific systems in depth:
+- [Architecture Overview](overview.md)
 - [Dual LOD System](dual-lod.md)
-- [Creature Intelligence](creature-ai.md)
-- [Physics & Collision](physics.md)
+- [World & Room Management](world-rooms.md)

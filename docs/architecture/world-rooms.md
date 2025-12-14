@@ -1,8 +1,6 @@
 # World & Room Management
 
-**Reading time: 7-9 minutes**
-
-Rain World's world is vast—regions like Industrial Complex contain 70+ interconnected rooms. Yet at any moment, only a tiny fraction is loaded in memory. This document explains how the World and Room systems manage this large, interconnected space efficiently.
+Regions contain 70+ interconnected rooms but only 1-3 are loaded in memory at any time. This document covers the World and Room streaming system.
 
 ## The Big Picture
 
@@ -388,16 +386,14 @@ When chasing across room boundaries:
 
 ## Summary
 
-The World and Room system achieves efficient streaming through:
+Key components:
+- Abstract rooms: Always exist (lightweight)
+- Realized rooms: Created on-demand (1-3 at a time)
+- Progressive loading: Hides realization cost
+- Memory budget: ~200MB for 3-4 rooms
 
-- **Abstract rooms** always exist (lightweight data structures)
-- **Realized rooms** created on-demand (1-3 at a time)
-- **Progressive loading** hides realization cost
-- **Aggressive cleanup** keeps memory usage low
-- **Dual pathfinding** (abstract for migrations, realized for detailed movement)
+## Related Documentation
 
-This architecture enables large, interconnected regions while maintaining smooth performance on limited hardware. The tradeoff: careful memory management and complexity in handling room transitions.
-
----
-
-**Next**: [Creature Intelligence](creature-ai.md) explains how creature AI works in both abstract and realized forms.
+- [Dual LOD System](dual-lod.md)
+- [Creature Intelligence](creature-ai.md)
+- [Architecture Overview](overview.md)
