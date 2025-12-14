@@ -1,8 +1,6 @@
 # Rain World Architecture Overview
 
-**Reading time: 10-15 minutes**
-
-This document explains Rain World's complete architecture from first principles. By the end, you'll understand why the codebase is structured the way it is and how all the pieces fit together.
+Complete system architecture documentation.
 
 ## The Core Problem
 
@@ -286,17 +284,10 @@ With this architecture, Rain World achieves:
 
 - **Large interconnected world**: Regions like Industrial Complex have 70+ rooms. With streaming and abstract simulation, it all fits in memory and runs smoothly.
 
-## Next Steps
+## Related Documentation
 
-Now that you understand the architecture, you can dive deeper:
-
-- **Want to understand the game loop in detail?** → [The Game Loop](game-loop.md)
-- **Curious about Abstract vs Realized specifics?** → [Dual LOD System](dual-lod.md)
-- **Need to mod creature behavior?** → [Creature Intelligence](creature-ai.md)
-- **Interested in the design patterns and problems?** → [Design Patterns](design-patterns.md)
-
-Or jump to [Class Hierarchy Reference](class-hierarchy.md) if you want class diagrams and implementation details.
-
----
-
-**This is the core knowledge.** Everything else in the documentation is elaboration on these fundamentals.
+- [The Game Loop](game-loop.md)
+- [Dual LOD System](dual-lod.md)
+- [Creature Intelligence](creature-ai.md)
+- [Design Patterns](design-patterns.md)
+- [Class Hierarchy Reference](class-hierarchy.md)

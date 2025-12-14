@@ -1,10 +1,6 @@
 # The Dual LOD System
 
-**Reading time: 8-10 minutes**
-
-Rain World's most distinctive technical feature is its dual Level-of-Detail (LOD) system. Unlike traditional LOD that only affects graphics quality, Rain World's LOD system fundamentally changes how entities *exist and think*.
-
-This document explains how the abstract and realized layers work, why they're necessary, and what happens during transitions.
+Rain World uses a dual Level-of-Detail (LOD) system where entities exist in two forms: abstract (low-detail, far from player) and realized (full-detail, near player).
 
 ## The Problem: Simulating an Ecosystem
 
@@ -328,15 +324,13 @@ This is why Rain World's approach is novel—it's LOD for *game logic*, not just
 
 ## Summary
 
-The dual LOD system enables Rain World's persistent ecosystem by running two simulations simultaneously:
+The dual LOD system runs two simulations:
+- Abstract layer: Cheap, always-on simulation of the entire region
+- Realized layer: Expensive, on-demand simulation of nearby areas
 
-- **Abstract layer**: Cheap, always-on, strategic simulation of the entire region
-- **Realized layer**: Expensive, on-demand, tactical simulation of nearby areas
+Transitions are seamless though some transient state is lost. Performance gain is ~70x for abstract entities.
 
-Transitions between the two are seamless (from the player's perspective), though some transient state is lost. This tradeoff—accepting minor discontinuities for massive performance gains—is what makes the ecosystem simulation feasible.
+## Related Documentation
 
-The result: a world that feels alive. Creatures persist, migrate, hunt, and die whether you're watching or not. The code architecture directly enables this core experience.
-
----
-
-**Next**: [World & Room Management](world-rooms.md) explains how the world streams and manages these realized/abstract transitions.
+- [World & Room Management](world-rooms.md)
+- [Architecture Overview](overview.md)
