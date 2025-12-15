@@ -8,10 +8,17 @@
   - [Layer Overview](01-systems/README.md)
   - Core Architecture
     - [Overview](01-systems/core-architecture/overview.md)
+    - [Three-Tier Hierarchy](01-systems/core-architecture/three-tier-hierarchy.md)
     - [Dual LOD System](01-systems/core-architecture/dual-lod-system.md)
     - [Update Loop](01-systems/core-architecture/update-loop.md)
   - World Systems
     - [World & Rooms](01-systems/world-systems/world-and-rooms.md)
+  - Creature Systems
+    - [Creature Intelligence](01-systems/creature-systems/creature-intelligence.md)
+  - Physics Systems
+    - [BodyChunk Physics](01-systems/physics-systems/bodychunk-physics.md)
+  - Graphics Systems
+    - [Graphics Separation](01-systems/graphics-systems/graphics-separation.md)
 
 - **Layer 2: Implementation**
   - [Layer Overview](02-implementation/README.md)
