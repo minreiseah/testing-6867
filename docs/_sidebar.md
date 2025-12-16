@@ -17,8 +17,13 @@
     - [Creature Intelligence](01-systems/creature-systems/creature-intelligence.md)
   - Physics Systems
     - [BodyChunk Physics](01-systems/physics-systems/bodychunk-physics.md)
+    - [Collision Detection](01-systems/physics-systems/collision-detection.md)
   - Graphics Systems
     - [Graphics Separation](01-systems/graphics-systems/graphics-separation.md)
+  - Design Decisions
+    - [Tradeoffs](01-systems/design-decisions/tradeoffs.md)
+    - [Why Dual LOD?](01-systems/design-decisions/why-dual-lod.md)
+    - [Why BodyChunks?](01-systems/design-decisions/why-bodychunks.md)
 
 - **Layer 2: Implementation**
   - [Layer Overview](02-implementation/README.md)
